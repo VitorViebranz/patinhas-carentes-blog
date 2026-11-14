@@ -1,0 +1,296 @@
+[
+    {
+        "name": "Adhemar Garcia",
+        "slug": "adhemar-garcia",
+        "latitude": -26.320724,
+        "longitude": -48.800069,
+        "outsideMainArea": false
+    },
+    {
+        "name": "América",
+        "slug": "america",
+        "latitude": -26.289921,
+        "longitude": -48.852625,
+        "outsideMainArea": false
+    },
+    {
+        "name": "Anita Garibaldi",
+        "slug": "anita-garibaldi",
+        "latitude": -26.316385,
+        "longitude": -48.84986,
+        "outsideMainArea": false
+    },
+    {
+        "name": "Atiradores",
+        "slug": "atiradores",
+        "latitude": -26.308893,
+        "longitude": -48.855371,
+        "outsideMainArea": false
+    },
+    {
+        "name": "Aventureiro",
+        "slug": "aventureiro",
+        "latitude": -26.246676,
+        "longitude": -48.81535,
+        "outsideMainArea": false
+    },
+    {
+        "name": "Boa Vista",
+        "slug": "boa-vista",
+        "latitude": -26.299641,
+        "longitude": -48.813356,
+        "outsideMainArea": false
+    },
+    {
+        "name": "Boehmerwald",
+        "slug": "boehmerwald",
+        "latitude": -26.356324,
+        "longitude": -48.829228,
+        "outsideMainArea": false
+    },
+    {
+        "name": "Bom Retiro",
+        "slug": "bom-retiro",
+        "latitude": -26.263771,
+        "longitude": -48.844389,
+        "outsideMainArea": false
+    },
+    {
+        "name": "Bucarein",
+        "slug": "bucarein",
+        "latitude": -26.316655,
+        "longitude": -48.844158,
+        "outsideMainArea": false
+    },
+    {
+        "name": "Centro",
+        "slug": "centro",
+        "latitude": -26.302991,
+        "longitude": -48.843817,
+        "outsideMainArea": false
+    },
+    {
+        "name": "Comasa",
+        "slug": "comasa",
+        "latitude": -26.281001,
+        "longitude": -48.799117,
+        "outsideMainArea": false
+    },
+    {
+        "name": "Costa e Silva",
+        "slug": "costa-e-silva",
+        "latitude": -26.273293,
+        "longitude": -48.870462,
+        "outsideMainArea": false
+    },
+    {
+        "name": "Espinheiros",
+        "slug": "espinheiros",
+        "latitude": -26.28472,
+        "longitude": -48.778655,
+        "outsideMainArea": false
+    },
+    {
+        "name": "Fátima",
+        "slug": "fatima",
+        "latitude": -26.332034,
+        "longitude": -48.816853,
+        "outsideMainArea": false
+    },
+    {
+        "name": "Floresta",
+        "slug": "floresta",
+        "latitude": -26.328117,
+        "longitude": -48.85012,
+        "outsideMainArea": false
+    },
+    {
+        "name": "Garuva",
+        "slug": "garuva",
+        "latitude": -26.029393,
+        "longitude": -48.857295,
+        "outsideMainArea": true
+    },
+    {
+        "name": "Glória",
+        "slug": "gloria",
+        "latitude": -26.288556,
+        "longitude": -48.868427,
+        "outsideMainArea": false
+    },
+    {
+        "name": "Guanabara",
+        "slug": "guanabara",
+        "latitude": -26.325458,
+        "longitude": -48.833787,
+        "outsideMainArea": false
+    },
+    {
+        "name": "Iririú",
+        "slug": "iririu",
+        "latitude": -26.273006,
+        "longitude": -48.814117,
+        "outsideMainArea": false
+    },
+    {
+        "name": "Itaum",
+        "slug": "itaum",
+        "latitude": -26.3364,
+        "longitude": -48.830641,
+        "outsideMainArea": false
+    },
+    {
+        "name": "Itinga",
+        "slug": "itinga",
+        "latitude": -26.383561,
+        "longitude": -48.821362,
+        "outsideMainArea": false
+    },
+    {
+        "name": "Jardim Iririú",
+        "slug": "jardim-iririu",
+        "latitude": -26.259801,
+        "longitude": -48.807203,
+        "outsideMainArea": false
+    },
+    {
+        "name": "Jardim Paraiso",
+        "slug": "jardim-paraiso",
+        "latitude": -26.206171,
+        "longitude": -48.829869,
+        "outsideMainArea": false
+    },
+    {
+        "name": "Jardim Sofia",
+        "slug": "jardim-sofia",
+        "latitude": -26.236822,
+        "longitude": -48.828065,
+        "outsideMainArea": false
+    },
+    {
+        "name": "Jarivatuba",
+        "slug": "jarivatuba",
+        "latitude": -26.338834,
+        "longitude": -48.806361,
+        "outsideMainArea": false
+    },
+    {
+        "name": "João Costa",
+        "slug": "joao-costa",
+        "latitude": -26.346515,
+        "longitude": -48.803966,
+        "outsideMainArea": false
+    },
+    {
+        "name": "Morro do Meio",
+        "slug": "morro-do-meio",
+        "latitude": -26.337504,
+        "longitude": -48.897597,
+        "outsideMainArea": false
+    },
+    {
+        "name": "Nova Brasília",
+        "slug": "nova-brasilia",
+        "latitude": -26.344583,
+        "longitude": -48.859389,
+        "outsideMainArea": false
+    },
+    {
+        "name": "Paranaguamirim",
+        "slug": "paranaguamirim",
+        "latitude": -26.348679,
+        "longitude": -48.783715,
+        "outsideMainArea": false
+    },
+    {
+        "name": "Parque Guarani",
+        "slug": "parque-guarani",
+        "latitude": -26.360762,
+        "longitude": -48.808997,
+        "outsideMainArea": false
+    },
+    {
+        "name": "Petrópolis",
+        "slug": "petropolis",
+        "latitude": -26.348419,
+        "longitude": -48.832144,
+        "outsideMainArea": false
+    },
+    {
+        "name": "Pirabeiraba",
+        "slug": "pirabeiraba",
+        "latitude": -26.207995,
+        "longitude": -48.900352,
+        "outsideMainArea": true
+    },
+    {
+        "name": "Profipo",
+        "slug": "profipo",
+        "latitude": -26.40362,
+        "longitude": -48.831793,
+        "outsideMainArea": false
+    },
+    {
+        "name": "Rio Bonito",
+        "slug": "rio-bonito",
+        "latitude": -26.1675,
+        "longitude": -48.9062,
+        "outsideMainArea": true
+    },
+    {
+        "name": "Saguaçu",
+        "slug": "saguacu",
+        "latitude": -26.283687,
+        "longitude": -48.838968,
+        "outsideMainArea": false
+    },
+    {
+        "name": "Santa Catarina",
+        "slug": "santa-catarina",
+        "latitude": -26.3653,
+        "longitude": -48.8521,
+        "outsideMainArea": false
+    },
+    {
+        "name": "Santo Antônio",
+        "slug": "santo-antonio",
+        "latitude": -26.273985,
+        "longitude": -48.851102,
+        "outsideMainArea": false
+    },
+    {
+        "name": "São Francisco do Sul",
+        "slug": "sao-francisco-do-sul",
+        "latitude": -26.257186,
+        "longitude": -48.643811,
+        "outsideMainArea": true
+    },
+    {
+        "name": "São Marcos",
+        "slug": "sao-marcos",
+        "latitude": -26.356378,
+        "longitude": -48.842174,
+        "outsideMainArea": false
+    },
+    {
+        "name": "Ulysses Guimarães",
+        "slug": "ulysses-guimaraes",
+        "latitude": -26.326033,
+        "longitude": -48.794527,
+        "outsideMainArea": false
+    },
+    {
+        "name": "Vila Cubatão",
+        "slug": "vila-cubatao",
+        "latitude": -26.218128,
+        "longitude": -48.801191,
+        "outsideMainArea": false
+    },
+    {
+        "name": "Vila Nova",
+        "slug": "vila-nova",
+        "latitude": -26.286983,
+        "longitude": -48.907367,
+        "outsideMainArea": false
+    }
+]

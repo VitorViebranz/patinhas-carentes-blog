@@ -1,0 +1,12 @@
+node_modules
+dist
+coverage
+reference
+seed
+package-lock.json
+BUILD_PROMPT.md
+apps/api/src/generated
+apps/api/.agents
+apps/api/skills-lock.json
+package-lock.json
+reference

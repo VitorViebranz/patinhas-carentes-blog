@@ -1,0 +1,13 @@
+ALTER TABLE "neighborhoods" ADD CONSTRAINT "neighborhoods_lat_chk" CHECK ("latitude" BETWEEN -90 AND 90);
+ALTER TABLE "neighborhoods" ADD CONSTRAINT "neighborhoods_lon_chk" CHECK ("longitude" BETWEEN -180 AND 180);
+ALTER TABLE "collection_points" ADD CONSTRAINT "collection_points_lat_chk" CHECK ("latitude" BETWEEN -90 AND 90);
+ALTER TABLE "collection_points" ADD CONSTRAINT "collection_points_lon_chk" CHECK ("longitude" BETWEEN -180 AND 180);
+ALTER TABLE "monthly_reports" ADD CONSTRAINT "monthly_reports_total_kg_chk" CHECK ("total_kg" >= 0);
+ALTER TABLE "monthly_reports" ADD CONSTRAINT "monthly_reports_month_chk" CHECK ("month" ~ '^[0-9]{4}-(0[1-9]|1[0-2])$');
+ALTER TABLE "pickups" ADD CONSTRAINT "pickups_kg_chk" CHECK ("kg" > 0);
+ALTER TABLE "site_settings" ADD CONSTRAINT "site_settings_single_row_chk" CHECK ("id" = 1);
+ALTER TABLE "site_settings" ADD CONSTRAINT "site_settings_kg_price_chk" CHECK ("kg_price_brl" > 0);
+ALTER TABLE "site_settings" ADD CONSTRAINT "site_settings_spay_cost_chk" CHECK ("spay_cost_brl" > 0);
+ALTER TABLE "site_settings" ADD CONSTRAINT "site_settings_grams_chk" CHECK ("grams_per_cap" > 0);
+ALTER TABLE "site_settings" ADD CONSTRAINT "site_settings_monthly_avg_chk" CHECK ("monthly_average_kg" >= 0);
+ALTER TABLE "site_settings" ADD CONSTRAINT "site_settings_animals_chk" CHECK ("animals_served_year" IS NULL OR "animals_served_year" >= 0);

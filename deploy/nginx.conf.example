@@ -1,0 +1,63 @@
+# Example for a server without Docker: nginx on the host serves the built site and proxies /api
+# to the Node process managed by systemd (see patinhas-api.service). Adjust paths and server_name.
+#
+# Build the site once with: npm ci && npm run build -w @patinhas/web
+# and copy apps/web/dist to /var/www/patinhas.
+
+map $http_x_forwarded_proto $forwarded_proto {
+    default $http_x_forwarded_proto;
+    '' $scheme;
+}
+
+server {
+    listen 80;
+    server_name patinhas.example.org;
+    return 301 https://$host$request_uri;
+}
+
+server {
+    listen 443 ssl;
+    http2 on;
+    server_name patinhas.example.org;
+
+    ssl_certificate     /etc/letsencrypt/live/patinhas.example.org/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/patinhas.example.org/privkey.pem;
+
+    root /var/www/patinhas;
+    index index.html;
+    client_max_body_size 6m;
+
+    gzip on;
+    gzip_min_length 1024;
+    gzip_types text/css application/javascript application/json image/svg+xml;
+
+    add_header Strict-Transport-Security "max-age=31536000" always;
+    add_header Content-Security-Policy "default-src 'self'; img-src 'self' data: blob: https://tile.openstreetmap.org https://*.tile.openstreetmap.org; style-src 'self' 'unsafe-inline'; script-src 'self'; font-src 'self'; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; object-src 'none'" always;
+    add_header X-Content-Type-Options "nosniff" always;
+    add_header Referrer-Policy "strict-origin-when-cross-origin" always;
+    add_header Permissions-Policy "geolocation=(self), camera=(), microphone=()" always;
+
+    location /api/ {
+        # Same number as PORT in /etc/patinhas/api.env.
+        proxy_pass http://127.0.0.1:3847;
+        proxy_http_version 1.1;
+        proxy_set_header Connection "";
+        # $http_host keeps the port, which the CSRF check of the API compares with the Origin header.
+        proxy_set_header Host $http_host;
+        proxy_set_header X-Real-IP $remote_addr;
+        # nginx is the first hop here: do not append to a header the visitor can fake.
+        proxy_set_header X-Forwarded-For $remote_addr;
+        proxy_set_header X-Forwarded-Proto $forwarded_proto;
+        proxy_read_timeout 35s;
+    }
+
+    location /assets/ {
+        expires 1y;
+        try_files $uri =404;
+    }
+
+    location / {
+        expires -1;
+        try_files $uri /index.html;
+    }
+}

@@ -1,0 +1,4 @@
+.placeholder {
+    background: linear-gradient(135deg, var(--color-teal-soft), var(--color-mint-3));
+    min-height: 3rem;
+}

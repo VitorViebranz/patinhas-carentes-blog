@@ -1,0 +1,254 @@
+generator client {
+    provider = "prisma-client"
+    output   = "../src/generated/prisma"
+}
+
+datasource db {
+    provider = "postgresql"
+}
+
+enum UserRole {
+    ADMIN
+    EDITOR
+}
+
+enum PointCategory {
+    PET_VET
+    EDUCATION
+    HEALTH
+    GROCERY_FOOD
+    COMMERCE_SERVICES
+}
+
+enum LocationPrecision {
+    HOUSE_NUMBER
+    STREET
+    PLACE_NAME
+    NEIGHBORHOOD
+}
+
+enum RecordStatus {
+    ACTIVE
+    INACTIVE
+}
+
+enum HelpRequestType {
+    COLLECTION_POINT
+    FOSTER
+    TALK
+}
+
+enum InstitutionType {
+    SCHOOL
+    COMPANY
+    STORE
+    CONDO
+}
+
+enum HelpRequestStatus {
+    NEW
+    ANSWERED
+}
+
+enum PublishStatus {
+    DRAFT
+    PUBLISHED
+}
+
+model User {
+    id           String    @id @default(uuid(7))
+    name         String
+    email        String    @unique
+    passwordHash String    @map("password_hash")
+    role         UserRole  @default(EDITOR)
+    isActive     Boolean   @default(true) @map("is_active")
+    lastLoginAt  DateTime? @map("last_login_at")
+    createdAt    DateTime  @default(now()) @map("created_at")
+    updatedAt    DateTime  @updatedAt @map("updated_at")
+
+    sessions         Session[]
+    answeredRequests HelpRequest[]
+    uploads          MediaFile[]
+    registeredPickups Pickup[]
+
+    @@map("users")
+}
+
+model Session {
+    id        String   @id @default(uuid(7))
+    tokenHash String   @unique @map("token_hash")
+    userId    String   @map("user_id")
+    user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+    expiresAt DateTime @map("expires_at")
+    createdAt DateTime @default(now()) @map("created_at")
+    updatedAt DateTime @updatedAt @map("updated_at")
+
+    @@index([userId])
+    @@index([expiresAt])
+    @@map("sessions")
+}
+
+model Neighborhood {
+    id              String   @id @default(uuid(7))
+    name            String
+    slug            String   @unique
+    latitude        Float
+    longitude       Float
+    outsideMainArea Boolean  @default(false) @map("outside_main_area")
+    createdAt       DateTime @default(now()) @map("created_at")
+    updatedAt       DateTime @updatedAt @map("updated_at")
+
+    collectionPoints CollectionPoint[]
+
+    @@map("neighborhoods")
+}
+
+model CollectionPoint {
+    id                String            @id @default(uuid(7))
+    name              String
+    neighborhoodId    String            @map("neighborhood_id")
+    neighborhood      Neighborhood      @relation(fields: [neighborhoodId], references: [id])
+    address           String?
+    phone             String?
+    category          PointCategory
+    openingHours      String?           @map("opening_hours")
+    latitude          Float
+    longitude         Float
+    locationPrecision LocationPrecision @map("location_precision")
+    outsideMainArea   Boolean           @default(false) @map("outside_main_area")
+    status            RecordStatus      @default(ACTIVE)
+    createdAt         DateTime          @default(now()) @map("created_at")
+    updatedAt         DateTime          @updatedAt @map("updated_at")
+
+    pickups Pickup[]
+
+    @@index([neighborhoodId, status])
+    @@map("collection_points")
+}
+
+model Pickup {
+    id          String          @id @default(uuid(7))
+    pointId     String          @map("point_id")
+    point       CollectionPoint @relation(fields: [pointId], references: [id], onDelete: Cascade)
+    pickedUpOn  DateTime        @map("picked_up_on") @db.Date
+    kg          Decimal         @db.Decimal(10, 2)
+    bags        Int?
+    bagLiters   Int?            @map("bag_liters")
+    createdById String?         @map("created_by_id")
+    createdBy   User?           @relation(fields: [createdById], references: [id], onDelete: SetNull)
+    createdAt   DateTime        @default(now()) @map("created_at")
+    updatedAt   DateTime        @updatedAt @map("updated_at")
+
+    @@index([pointId, pickedUpOn])
+    @@index([pickedUpOn])
+    @@map("pickups")
+}
+
+model HelpRequest {
+    id              String            @id @default(uuid(7))
+    type            HelpRequestType
+    requesterName   String            @map("requester_name")
+    contact         String
+    institutionName String?           @map("institution_name")
+    institutionType InstitutionType?  @map("institution_type")
+    wantsTalk       Boolean           @default(false) @map("wants_talk")
+    animalCapacity  Int?              @map("animal_capacity")
+    message         String?
+    postalCode      String?           @map("postal_code")
+    address         String?
+    neighborhoodName String?          @map("neighborhood_name")
+    consentGivenAt  DateTime          @map("consent_given_at")
+    status          HelpRequestStatus @default(NEW)
+    answeredAt      DateTime?         @map("answered_at")
+    answeredById    String?           @map("answered_by_id")
+    answeredBy      User?             @relation(fields: [answeredById], references: [id], onDelete: SetNull)
+    createdAt       DateTime          @default(now()) @map("created_at")
+    updatedAt       DateTime          @updatedAt @map("updated_at")
+
+    @@index([status, createdAt])
+    @@map("help_requests")
+}
+
+model MonthlyReport {
+    id             String        @id @default(uuid(7))
+    month          String        @unique
+    totalKg        Decimal       @map("total_kg") @db.Decimal(10, 2)
+    animalsVaccinated  Int?      @map("animals_vaccinated")
+    dosesApplied       Int?      @map("doses_applied")
+    doseCostBrl        Decimal?  @map("dose_cost_brl") @db.Decimal(10, 2)
+    medicationSpentBrl Decimal?  @map("medication_spent_brl") @db.Decimal(10, 2)
+    feedSpentBrl       Decimal?  @map("feed_spent_brl") @db.Decimal(10, 2)
+    castrationsDone    Int?      @map("castrations_done")
+    otherIncomeBrl     Decimal?  @map("other_income_brl") @db.Decimal(10, 2)
+    outcomeSummary String?       @map("outcome_summary")
+    status         PublishStatus @default(DRAFT)
+    publishedAt    DateTime?     @map("published_at")
+    createdAt      DateTime      @default(now()) @map("created_at")
+    updatedAt      DateTime      @updatedAt @map("updated_at")
+
+    @@map("monthly_reports")
+}
+
+model MediaFile {
+    id           String   @id @default(uuid(7))
+    path         String   @unique
+    mimeType     String   @map("mime_type")
+    sizeBytes    Int      @map("size_bytes")
+    altText      String   @default("") @map("alt_text")
+    uploadedById String?  @map("uploaded_by_id")
+    uploadedBy   User?    @relation(fields: [uploadedById], references: [id], onDelete: SetNull)
+    createdAt    DateTime @default(now()) @map("created_at")
+    updatedAt    DateTime @updatedAt @map("updated_at")
+
+    stories Story[]
+
+    @@map("media_files")
+}
+
+model Story {
+    id           String        @id @default(uuid(7))
+    title        String
+    slug         String        @unique
+    body         String
+    coverMediaId String?       @map("cover_media_id")
+    coverMedia   MediaFile?    @relation(fields: [coverMediaId], references: [id], onDelete: SetNull)
+    status       PublishStatus @default(DRAFT)
+    publishedAt  DateTime?     @map("published_at")
+    createdAt    DateTime      @default(now()) @map("created_at")
+    updatedAt    DateTime      @updatedAt @map("updated_at")
+
+    @@index([status, publishedAt])
+    @@map("stories")
+}
+
+model SiteSettings {
+    id                Int      @id @default(1)
+    gramsPerCap       Float    @default(2.5) @map("grams_per_cap")
+    kgPriceBrl        Float    @default(2) @map("kg_price_brl")
+    spayCostBrl       Float    @default(350) @map("spay_cost_brl")
+    vaccineDoseCostBrl Float   @default(60) @map("vaccine_dose_cost_brl")
+    kgPer100LBag      Float    @default(8) @map("kg_per_100l_bag")
+    monthlyAverageKg  Float    @default(0) @map("monthly_average_kg")
+    animalsServedYear Int?     @map("animals_served_year")
+    cnpj              String?
+    pixKey            String?  @map("pix_key")
+    whatsappNumber    String?  @map("whatsapp_number")
+    instagramHandle   String?  @map("instagram_handle")
+    adoptionUrl       String?  @map("adoption_url")
+    hiddenFeatures    String[] @default([]) @map("hidden_features")
+    createdAt         DateTime @default(now()) @map("created_at")
+    updatedAt         DateTime @updatedAt @map("updated_at")
+
+    @@map("site_settings")
+}
+
+model GeocodeCache {
+    id        String   @id @default(uuid(7))
+    query     String   @unique
+    latitude  Float
+    longitude Float
+    createdAt DateTime @default(now()) @map("created_at")
+    updatedAt DateTime @updatedAt @map("updated_at")
+
+    @@map("geocode_cache")
+}
