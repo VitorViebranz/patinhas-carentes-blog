@@ -1,0 +1,29 @@
+.box {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px 16px;
+    padding: 16px 18px;
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius);
+    background: var(--color-card);
+    color: var(--color-dim);
+}
+
+.loading {
+    background: var(--color-teal-soft);
+    color: var(--color-heading);
+}
+
+.error {
+    background: var(--color-pink-soft);
+    border-color: var(--color-bad-line-2);
+    color: var(--color-error-text);
+    font-weight: 600;
+}
+
+.empty {
+    background: var(--color-pink-soft);
+    border-color: transparent;
+    color: var(--color-ink);
+}

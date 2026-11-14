@@ -1,0 +1,13 @@
+.text {
+    max-width: 44rem;
+    padding: 28px var(--gx) 8px;
+}
+.text h2 {
+    margin-top: 22px;
+    font-size: 1.3rem;
+}
+.text p {
+    margin-top: 6px;
+    color: var(--color-dim);
+    font-size: 1.05rem;
+}

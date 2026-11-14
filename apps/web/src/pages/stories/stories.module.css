@@ -1,0 +1,51 @@
+.story {
+    padding: 0;
+    overflow: hidden;
+    border-radius: var(--radius);
+}
+.story img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+}
+.story > div {
+    padding: 16px 18px 18px;
+}
+.story h3 {
+    margin: 2px 0 4px;
+    font-size: 1.3rem;
+}
+.story h3 a {
+    color: inherit;
+    text-decoration: none;
+}
+.story p {
+    color: var(--color-dim);
+}
+.date {
+    color: var(--color-heading);
+    font-size: 0.9rem;
+    font-weight: 700;
+}
+.detail {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+    max-width: 44rem;
+    padding: 32px var(--gx);
+}
+.detail img {
+    width: 100%;
+    border-radius: var(--radius);
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+}
+.detail p {
+    font-size: 1.1rem;
+    white-space: pre-line;
+}
+.back {
+    font-weight: 700;
+}
